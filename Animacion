@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <title>Desaparecer o aparecer un div al transcurrir unos segundos con
+        jQuery</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+    main>div {
+        display: none;
+    }
+
+    body {
+        background: #CCC
+    }
+
+    .content{
+        border: 5px solid red;
+        margin-top: 15px;
+        width: 50%;
+        height: 50px;
+    }
+
+
+
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        function mostrar(el, time, infi = false) {
+            let p = $(el);
+            let i = 0;
+            // ejecutamos un intervalo de tiempo para los elementos
+            let interval = setInterval(() => {
+
+                // validamos que no sea el elemento 0 para aplicarle el none al anterior!
+                if (i != 0) $(p[i - 1]).hide();
+                //validamos si es igual al lenght para finalizar el bucle
+                if (i == p.length) {
+                    //retornamos i a 0
+                    i = 0;
+                    // limpiamos el intervalor para que no se ejecute mas si no es infinito
+                    if (!infi) clearInterval(interval)
+                }
+                // aplicamos el display block
+                $(p[i]).show("slow");
+                // aumentamos i en 1
+                i++;
+            }, time)
+        }
+        mostrar('main div[id^="contenido"]', 2000, true);
+    });
+    </script>
+</head>
+
+<body>
+    <main>
+        <div id="contenido1">
+            <div class='content' id="content-text">Contenido 1</div>
+            <div class='content'  id="content-text2">Contenido 2</div>
+            <div class='content'  id="content-text3">Contenido 3</div>
+        </div>
+        <div id="contenido2">
+            <div class='content'  id="content-text4">Contenido 4</div>
+            <div class='content'  id="content-text5">Contenido 5</div>
+            <div class='content'  id="content-text6">Contenido 6</div>
+        </div>
+        <div id="contenido3">
+            <div class='content'  id="content-text7">Contenido 7</div>
+            <div class='content'  id="content-text8">Contenido 8</div>
+            <div class='content'  id="content-text9">Contenido 9</div>
+        </div>
+        <div id="contenido4">
+            <div class='content'  id="content-text10">Contenido 10</div>
+            <div class='content'   id="content-text11">Contenido 11</div>
+            <div class='content'  id="content-text12">Contenido 12</div>
+        </div>
+    </main>
+</body>
+
+</html>
